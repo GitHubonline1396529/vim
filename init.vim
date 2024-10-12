@@ -43,6 +43,7 @@ set pythonthreedll=D:\Python\Python39\python39.dll
 set modelines=0 " 禁用模式行（安全措施）
 filetype on " 开启文件类型检测
 set encoding=utf-8 " 编码设置
+set termencoding=utf-8 " 编码设置
 
 " 显示设置
 " ========

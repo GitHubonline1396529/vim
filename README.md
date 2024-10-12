@@ -145,4 +145,11 @@ source $VIMRUNTIME/init.vim
 
 ## 关于
 
-如果你喜欢我的项目，别忘了帮我点亮小星星；如果对于配置的使用存在任何疑虑，欢迎提交 Issue。
+如果你喜欢我的项目，别忘了帮我点亮小星星；如果对于配置的使用存在任何疑虑，欢迎 [提交 Issue](https://github.com/GitHubonline1396529/vim/issues/new)。项目开源地址：
+
+- Github: [GitHubonline1396529/vim](https://github.com/GitHubonline1396529/vim)
+- Gitee: [BOXonline_1396529/vimrc](https://gitee.com/BOXonline_1396529/vimrc)
+
+点击链接前往访问。
+
+

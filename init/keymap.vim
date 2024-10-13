@@ -211,8 +211,8 @@ endfunc
 " CMD 的启动比 powershell 稍微快那么一点
 " map <Leader>e :redraw! | silent! !powershell -c start .<CR>
 " imap <Leader>e :redraw! | silent! !powershell -c start .<CR>
-map <Leader>e :redraw! | silent! !cmd /c start .<CR>
-imap <Leader>e :redraw! | silent! !cmd /c start .<CR>
+map <Leader>e :silent! !cmd /c start .<CR>
+imap <Leader>e :silent! !cmd /c start .<CR>
 
 " CocList 设置
 " ============

@@ -8,7 +8,7 @@
 " 在网上看见一个狂拽酷炫的按下F9自动编译功能
 " 稍微修改扩充了一下，留作自用
 " 需要安装过相应的编译器 / 解释器软件才有用
-
+"
 " 针对各类 C 族语言的调试功能
 " ---------------------------
 "
@@ -25,6 +25,20 @@ function! Debug()
         exe ":!gdb %<"
         redraw!
         echohl WarningMsg | echo " Debug finish! :-)"
+    elseif expand("%:e") == "md" ||
+        \ expand("%:e") == "markdown" ||
+        \ expand("%:e") == "mdown" ||
+        \ expand("%:e") == "mkdn" ||
+        \ expand("%:e") == "mkd" ||
+        \ expand("%:e") == "mdwn" ||
+        \ expand("%:e") == "mdtxt" ||
+        \ expand("%:e") == "txt" ||
+        \ expand("%:e") == "mdtext" ||
+        \ expand("%:e") == "text" ||
+        \ expand("%:e") == "rmd"
+        :MarkdownPreview
+        redraw!
+        echohl WarningMsg | echo " Running on browser! :-)"
     else
         redraw!
         echo "Language not support! :-("
@@ -83,10 +97,10 @@ function! Run()
         \ expand("%:e") == "mdtext" ||
         \ expand("%:e") == "text" ||
         \ expand("%:e") == "rmd"
-        :MarkdownPreview
+        " :MarkdownPreview
+	:! pandoc "%" -o "%<.pdf"
         redraw!
         echohl WarningMsg | echo " Running on browser! :-)"
-    
     " 针对 LaTeX 文件，使用 xelatex 编译。
     elseif expand("%:e") == "tex"
         :! latexmk -xelatex %
@@ -107,11 +121,14 @@ function! Run()
         echohl WarningMsg | echo " Running finish! :-)"
     
     " 针对 MapBasic 脚本文件。
-    elseif expand("%:e") == "mb"
-        :! "D:\Program Files (x86)\MapInfo\MapBasic\mapbasic.exe" -NOSPLASH -D "%<.mb"
-        :! "D:\Program Files (x86)\MapInfo\MapBasic\mapbasic.exe" -NOSPLASH -L "%<.MBX"
-        redraw!
-        echohl WarningMsg | echo " Running finish! :-)"
+    " 受不了了，MapBasic 是我有史以来见过的最狗屎的编程语言
+    " 这辈子再写一次我就是傻逼！
+    "
+    " elseif expand("%:e") == "mb"
+    "     :! "D:\Program Files (x86)\MapInfo\MapBasic\mapbasic.exe" -NOSPLASH -D "%<.mb"
+    "     :! "D:\Program Files (x86)\MapInfo\MapBasic\mapbasic.exe" -NOSPLASH -L "%<.MBX"
+    "     redraw!
+    "     echohl WarningMsg | echo " Running finish! :-)"
     
     " 其他不支持的文件类型。
     else

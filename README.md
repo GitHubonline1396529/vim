@@ -10,7 +10,7 @@
 
 相较于其他用户的 Vim 配置，我的配置的主要特点有：
 
-1. 准备了 $\LaTeX$ 编辑工具（没办法，我确实是 $\LaTeX$ 用户，如无需要请自行删改。）
+1. 准备了 $\LaTeX 编辑工具（没办法，我确实是 $\LaTeX$ 用户，如无需要请自行删改。）
 2. 专为 Windows 设计、配置文件本身及所有插件安置在 Vim 的安装目录下，不会让你的 C 盘容量变红爆炸；
 3. 针对 Windows 上插件管理器时不时安装失效的问题，提前准备了部分插件的本地文件，以便手动安装；
 4. 针对 Windows 上 Airline 字体乱码的问题提供了专用的字体 `Consolas for Powerline`；
@@ -34,7 +34,7 @@
 | 默认引导键   | `\`             |
 | 插件管理器   | Vim-Plug        |
 | 文件管理器   | NERDTree        |
-| 状态栏       | airlinerc.vim   |
+| 状态栏       | airline.vim     |
 | 代码补全方案 | Coc.nvim        |
 
 #### 键位设置
@@ -52,14 +52,16 @@
 | `\e`                    | 在文件管理器中打开当前目录           |
 | `TAB` + `h`/`j`/`k`/`l` | 切换窗口                             |
 | `F5`                    | （部分支持语言）编译运行             |
-| `F11`                   | （部分支持语言）调试                 |
+| `F6`                    | （部分支持语言）调试                 |
 | `\wp`                   | 打开 Windows Powershell              |
 | `\pw`                   | 打开 Powershell 7                    |
 | `\cl`                   | 打开 Windows 自带的 CMD              |
 | `\bs`                   | 打开 Windows 安装的 Bash Shell       |
 | `\zs`                   | 打开 Windows 安装的 Zsh Shell        |
+| `\sa`                   | 逐级调整窗口透明度                   |
+**Note**: 由各插件定义的默认功能热键不在此列。
 
-**Note**: 由各插件定义的快捷键功能不在此列。
+**Note**: 终端开启功能可自行定义。
 
 ### 个性化配置
 
@@ -97,9 +99,18 @@ let g:terminals = {
 
 ### 导入配置
 
-首先将 `autoload` 文件夹、`colors` 文件夹、`doc` 文件夹复制到 Vim 安装目录（通常名为 `vim90`、`vim91`、`vim82`，etc），其中包含用于安装插件的插件管理器 Vim-Plug 所需的 `plug.vim` 文件，以及 one 主题的配色文件（one 主题通过插件管理器安装会出现无法正常工作的情况）。
+首先将以下文件夹复制到 Vim 安装目录（通常名为 `vim90`、`vim91`、`vim82`，etc）：
 
-同时将 `./init.vim` 文件及 `./init` 文件夹、`plugged` 文件夹复制到 Vim 的运行目录，其中，`./init.vim` 和 `./init` 文件夹保存的是配置，其余的文件夹
+1. `autoload` 文件夹，其中包含用于安装插件的插件管理器 Vim-Plug 所需的 `plug.vim` 文件。
+2. `colors` 文件夹，其中包括 one 主题的配色文件（one 主题通过插件管理器安装会出现无法正常工作的情况）。
+3. `doc` 文件夹，包括用到的插件的文档文件。
+4. `vimtweak64.dll`
+
+其次，将以下文件夹复制到 Vim 的运行目录（与上述文件一样的目录）：
+
+1. `./init.vim` 文件，是本配置的入口文件。
+2. `./init` 文件夹，是本配置的附属文件的文件夹。
+3. `./plugged` 文件夹，是 Vim-Plug 插件的安装目录。
 
 在用户目录或 Vim 安装目录下创建 `.vimrc` 文件，文件中添加如下内容：
 
@@ -118,6 +129,34 @@ source $VIMRUNTIME/init.vim
 ### 安装自动补全方案
 
 在 Coc.Nvim 中执行 `CocInstall` 命令安装代码补全方案。这部分内容根据个人需求操作，此不赘述。
+
+## 文件说明
+
+本项目全部的 `.vim` 配置文件及其功能如下列所示：
+
+```
+.
+├─ (子目录) init - 保存了 init.vim 下属的配置
+│ ├─ color.vim - 颜色和外观样式
+│ ├─ keymap.vim - 全部的快捷键及部分快捷键的功能实现
+│ ├─ mytabline.vim - MyTabLine 的功能实现
+│ ├─ plugrc.vim - 各个插件的安装及配置的导入
+│ ├─ plugs - (子目录) 保存了各个插件独立的配置
+│ │ ├─ airlinerc.vim - Airline 插件的
+│ │ ├─ cocrc.vim - Coc.nvim 自动补全插件
+│ │ ├─ mkdprc.vim - Markdown 预览插件
+│ │ ├─ netrwrc.vim - 自带的 Netrw 插件（几乎不用）
+│ │ ├─ slimerc.vim - Slime 插件
+│ │ ├─ vimtexrc.vim - VimTeX 插件
+│ │ └─ vistarc.vim - Markdown 导航目录插件
+│ ├─ runcode.vim - 运行和调试代码功能的实现
+│ ├─ statubar.vim - 状态栏功能的实现
+│ ├─ terminal.vim - 一键开启终端功能的实现
+│ └─ tocs.vim - md 和 TeX 目录展开和折叠功能的实现
+└─ init.vim
+```
+
+如有必要在现有配置的基础上对配置进行进一步的个性化修改，希望这些信息能够帮助你正确定位文件和目录。
 
 ## 存在的问题与解决
 
@@ -138,18 +177,23 @@ source $VIMRUNTIME/init.vim
 针对中国地区的 Windows 用户连接不到 Github、插件下载安装遇到困难的情况，首先请自备需要上网工具。在此基础之上，请在 `C:\Windows\System32\drivers\etc\hosts` 文件下增加下面一行内容：
 
 ```
-199.232.68.133 raw.githubusercontent.com  
+199.232.68.133 raw.githubusercontent.com
 ```
 
 再执行 `PlugInstall` 即可。有的时候即使是这样也不能安装，则可以考虑反复执行 `PlugInstall` 重复 10 到 20 遍，耐心等待，直至所有插件正确安装。
 
 ## 关于
 
-如果你喜欢我的项目，别忘了帮我点亮小星星；如果对于配置的使用存在任何疑虑，欢迎 [提交 Issue](https://github.com/GitHubonline1396529/vim/issues/new)。项目开源地址：
+### 第三方许可证
+
+项目仓库中保存的 Consolas Powerline 字体遵循的有关许可证文件位于 `./fonts` 目录下的 `LICENCE` 文件，请自行查看。
+
+### 开源
+
+本项目根据 MIT 许可证开源，具体请查看 `LICENCE` 文件。除此之外，如果你喜欢我的项目，别忘了帮我点亮小星星；如果对于配置的使用存在任何疑虑，欢迎 [提交 Issue](https://github.com/GitHubonline1396529/vim/issues/new)。项目开源地址：
 
 - Github: [GitHubonline1396529/vim](https://github.com/GitHubonline1396529/vim)
 - Gitee: [BOXonline_1396529/vimrc](https://gitee.com/BOXonline_1396529/vimrc)
 
 点击链接前往访问。
-
 

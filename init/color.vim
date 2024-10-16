@@ -85,3 +85,20 @@ func! SwitchLightDark()
 	set background=dark
     endif
 endfunc
+
+" 设置透明化功能的函数
+" ====================
+"
+" 需要 `vimtweak64.dll` 插件
+" 由于再 `keymap.vim` 中定义了新的快捷键，该设置已被弃用。
+"
+" command -nargs=0 SetAlpha call SetAlphaFunction()
+" function SetAlphaFunction()
+"     call libcallnr("vimtweak64.dll", "SetAlpha", 225)
+" endfunction
+" 
+" command -nargs=0 ResetAlpha call ResetAlphaFunction()
+" function ResetAlphaFunction()
+"   call libcallnr("vimtweak64.dll", "SetAlpha", 255)
+" endfunction
+

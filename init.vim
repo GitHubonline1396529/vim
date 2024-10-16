@@ -50,15 +50,17 @@ set fileencoding=utf-8 " 编码设置
 " ========
 "
 " 设置 GUI 模式下的窗口尺寸，默认为 25 行 80 列，符合一般的编程习惯。
+" 这里写的数字是 84，这是因为默认开启行编号的情况下行号总要占据一些宽度，
+" 默认占据 4 字符宽度。
 if has('gui_running')
-    set lines=25 columns=80 
+    set lines=25 columns=84
 endif
 
 " set colorcolumn=81 " 80 列尺
 
 syntax on " 语法高亮
 set number " 显示行号
-" set sm! " 高亮显示匹配括号
+set sm! " 高亮显示匹配括号
 set hlsearch " 高亮查找匹配
 set cursorline " 高亮显示当前行
 set termguicolors " 启用终端真色
@@ -72,7 +74,13 @@ set laststatus=2 " always show statusline
 " set showtabline=2 " always show tabline
 set showtabline=0 " always show tabline
 set vb t_vb=
+
+" MyTabLine 功能我也不知道是干什么用的，反正一直在我的配置里面
+" 好像是实现了一个改进的 Buffer 查看的功能
+source $VIMRUNTIME/init/mytabline.vim
 set tabline=%!MyTabLine()
+
+set conceallevel=0 " 不启用虚拟字符
 
 " set relativenumber " 显示相对行号
 
@@ -83,29 +91,29 @@ set smartindent " 智能缩进
 set autoindent " 自动对齐
 set smarttab
 
-" 原本这段内容是只对 Python 文件生效的
-" 但是由于近年来我写代码习惯的变化
-" 我开始给所有类型的代码使用 4 空格缩进
-" 所以注释这段，转而直接设置 4 空格缩进为默认形式
-"
-" if expand("%:e") == "py"
-"     set tabstop=4 " tab缩进
-"     set shiftwidth=4 " 设定自动缩进为4个字符
-"     set expandtab " 用space替代tab的输入
-" endif
+" 针对 Python 文件
+if expand("%:e") == "py"
+    set expandtab " 用space替代tab的输入
+else
+    set noexpandtab " 确保 Tab 键输入的仍是 Tab 字符，而不是空格
+endif
 
-" 针对 makefile 不启用这些设置，
+" 下面的方法可以针对 makefile 不启用这些设置，
 " `autocmd BufRead,BufNewFile *` 使命令在每次读取或新建文件时触发
-autocmd BufRead,BufNewFile * if expand("%:t") =~? '^makefile$' |
-    \ set tabstop=4 |
-    \ set shiftwidth=4 |
-    \ set expandtab |
-    \ endif
+" autocmd BufRead,BufNewFile * if expand("%:t") =~? '^makefile$' |
+"     \ set tabstop=4 |
+"     \ set shiftwidth=4 |
+"     \ set expandtab |
+"     \ endif
+
+set tabstop=8 " 指定 Tab 在编辑器中显示的宽度
+set shiftwidth=4 " 设置自动缩进的宽度
 
 set splitright " 设置左右分割窗口时，新窗口出现在右侧
 set splitbelow " 设置水平分割窗口时，新窗口出现在底部
 
 set nobackup " 不需要备份
+set nowritebackup " 不需要备份
 set noswapfile " 禁止生成临时文件
 set autoread " 文件自动检测外部更改
 set clipboard=unnamed " 共享剪切板
@@ -166,12 +174,9 @@ source $VIMRUNTIME/init/color.vim
 "
 source $VIMRUNTIME/init/plugrc.vim
 
-" 状态栏和 tab 栏
-" ---------------
+" 状态栏
+" ------
 " 
-" MyTabLine 功能我也不知道是干什么用的，反正一直在我的配置里面
-" 好像是实现了一个改进的 Buffer 查看的功能
-source $VIMRUNTIME/init/mytabline.vim
 source $VIMRUNTIME/init/statubar.vim
 
 " ==========================

@@ -23,21 +23,13 @@ let g:vimtex_view_general_options
 \ . ':\%l^<CR^>:normal\! zzzv^<CR^>'
 \ . ':call remote_foreground('''.v:servername.''')^<CR^>^<CR^>\""'
 
-set conceallevel=1
 let g:tex_conceal='abdmg'
 
 " coc.neovim
 " 代码补全插件
-" Github 主页上给出的示例配置
+" Github 主页上给出的示例配置，进行了部分删改。
 " -------------
 " https://raw.githubusercontent.com/neoclide/coc.nvim/master/doc/coc-example-config.vim
-
-" May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
-" utf-8 byte sequence
-set encoding=utf-8
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
 
 " Having longer updatetime (default is 4000 ms = 4s) leads to noticeable
 " delays and poor user experience

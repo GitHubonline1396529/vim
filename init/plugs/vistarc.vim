@@ -36,4 +36,4 @@ let g:vista_ctags_cmd = {
 " To enable fzf's preview window set g:vista_fzf_preview.
 " The elements of g:vista_fzf_preview will be passed as arguments to fzf#vim#with_preview()
 " For example:
-let g:vista_fzf_preview = ['left:20%']
+let g:vista_fzf_preview = ['left:35%']

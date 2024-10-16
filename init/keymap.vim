@@ -18,7 +18,8 @@ let mapleader='\'
 " 
 " 按下 Tab + 方向键可用切换窗口
 " 
-" 这个功能我觉得也不算很常用，所以暂时注释了。
+" 这个功能我觉得使用方向键而不是 hjkl 很不 Vim，而且也不算很常用，所以暂时
+" 注释了。
 " noremap <TAB><left> <C-w><left>
 " noremap <TAB><right> <C-w><right>
 " noremap <TAB><up> <C-w><up>
@@ -55,8 +56,7 @@ noremap <TAB>j <C-w><down>
 " ============
 source $VIMRUNTIME/init/color.vim
 
-map <Leader>k :call SwitchLightDark()<CR>
-imap <Leader>k :call SwitchLightDark()<CR>
+nnoremap <Leader>k :call SwitchLightDark()<CR>
 
 " 自动编译功能
 " ============
@@ -67,11 +67,11 @@ source $VIMRUNTIME/init/runcode.vim
 " 按键绑定
 " --------
 " 
-" 定义编译和调试功能按键分别为 F5 和 F11
+" 定义编译和调试功能按键分别为 F5 和 F6
 map  <F5>  :w<CR>:call Run()<CR>
 imap <F5>  <ESC>:w<CR>:call Run()<CR>
-map  <F11> :w<CR>:call Debug()<CR>
-imap <F11> <ESC>:w<CR>:call Debug()<CR>
+map  <F6> :w<CR>:call Debug()<CR>
+imap <F6> <ESC>:w<CR>:call Debug()<CR>
 
 " 设置自动打开 Markdown 目录
 " ==========================
@@ -86,13 +86,13 @@ source $VIMRUNTIME/init/tocs.vim
 " ----------------
 " 
 " 针对一般情况
-map <Leader>v :call TocBar()<CR>
-imap <Leader>v :call TocBar()<CR>
+noremap <Leader>v :call TocBar()<CR>
+inoremap <Leader>v :call TocBar()<CR>
 
 " 针对在小窗口模式下想要延长窗口宽度打开文件管理器的情况
 " 设置快捷键为 Ctrl + \
-map <Leader>V :call TocBarExt()<CR>
-imap <Leader>V :call TocBarExt()<CR>
+noremap <Leader>V :call TocBarExt()<CR>
+inoremap <Leader>V :call TocBarExt()<CR>
 
 " 设置打开终端的热键
 " ==================
@@ -106,39 +106,47 @@ source $VIMRUNTIME/init/terminal.vim
 " --------
 "
 " 适配 Windows Powershell
-map <Leader>wp :call OpenTerminal('powershell')<CR>
-imap <Leader>wp :call OpenTerminal('powershell')<CR>
+nnoremap <Leader>wp :call OpenTerminal('powershell')<CR>
 
 " 适配 Windows 的 Powershell 7
-map <Leader>pw :call OpenTerminal('pwsh')<CR>
-imap <Leader>pw :call OpenTerminal('pwsh')<CR>
+nnoremap <Leader>pw :call OpenTerminal('pwsh')<CR>
 
 " 适配 Windows 原生的 CMD
-map <Leader>cl :call OpenTerminal('cmd')<CR>
-imap <Leader>cl :call OpenTerminal('cmd')<CR>
+nnoremap <Leader>cl :call OpenTerminal('cmd')<CR>
 
 " 适配 Bash
-map <Leader>bs :call OpenTerminal('bash')<CR>
-imap <Leader>bs :call OpenTerminal('bash')<CR>
+nnoremap <Leader>bs :call OpenTerminal('bash')<CR>
 
 " 适配 Zsh
-map <Leader>zs :call OpenTerminal('zsh')<CR>
-imap <Leader>zs :call OpenTerminal('zsh')<CR>
+nnoremap <Leader>zs :call OpenTerminal('zsh')<CR>
 
 " 设置透明化
 " ==========
 "
 " 需要 `vimtweak64.dll` 插件
+"
+" 创建一个变量为当前窗口透明度
+" ----------------------------
+"
+let s:alpha_level=255
 
-command -nargs=0 SetAlpha call SetAlphaFunction()
-function SetAlphaFunction()
-    call libcallnr("vimtweak64.dll", "SetAlpha", 222)
+" 创建窗口透明度控制函数
+" ----------------------
+"
+" 实现透明度的逐级调节从
+function AdjustAlpha()
+    if s:alpha_level > 210
+	let s:alpha_level -= 15
+    else
+	let s:alpha_level = 255
+    endif
+    call libcallnr("vimtweak64.dll", "SetAlpha", s:alpha_level)
 endfunction
 
-command -nargs=0 ResetAlpha call ResetAlphaFunction()
-function ResetAlphaFunction()
-  call libcallnr("vimtweak64.dll", "SetAlpha", 255)
-endfunction
+" 将函数绑定到热键
+" ----------------
+"
+nnoremap <Leader>sa :call AdjustAlpha()<CR>
 
 " 设置打开文件管理器
 " ==================
@@ -148,8 +156,8 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <Leader>n :NERDTreeToggle<CR>
 
 " 针对在小窗口模式下想要延长窗口宽度打开文件管理器的情况
-map <Leader>N :call NERDTreeBar()<CR>
-imap <Leader>N :call NERDTreeBar()<CR>
+noremap <Leader>N :call NERDTreeBar()<CR>
+inoremap <Leader>N :call NERDTreeBar()<CR>
 
 let s:NERDTree_feature = 0
 
@@ -208,31 +216,39 @@ endfunc
 " 在文件管理器中打开目录功能
 " ==========================
 "
+" 注意：这个设置只能再 Windows 系统上生效
+"
 " CMD 的启动比 powershell 稍微快那么一点
-" map <Leader>e :redraw! | silent! !powershell -c start .<CR>
-" imap <Leader>e :redraw! | silent! !powershell -c start .<CR>
-map <Leader>e :silent! !cmd /c start .<CR>
-imap <Leader>e :silent! !cmd /c start .<CR>
+" nnoremap <Leader>e :redraw! | silent! !powershell -c start .<CR>
+nnoremap <Leader>e :silent! !start .<CR>
 
 " CocList 设置
 " ============
 "
+" 如下设置来自 CocList 给出的默认设置，在这里保留以便确保代码兼容性。
+"
 " Mappings for CoCList
 " Show all diagnostics
 nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+
 " Manage extensions
 nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+
 " Show commands
 nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+
 " Find symbol of current document
 nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+
 " Search workspace symbols
 nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+
 " Do default action for next item
 nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+
 " Do default action for previous item
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+
 " Resume latest coc list
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
 

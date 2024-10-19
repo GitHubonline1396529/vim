@@ -39,6 +39,7 @@ Plug 'lervag/vimtex'
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 " Plug 'rakr/vim-one'
 " Plug 'ayu-theme/ayu-vim'
+Plug 'preservim/vim-markdown'
 
 call plug#end()
 
@@ -54,4 +55,5 @@ source $VIMRUNTIME/init/plugs/netrwrc.vim
 source $VIMRUNTIME/init/plugs/slimerc.vim
 source $VIMRUNTIME/init/plugs/vimtexrc.vim
 source $VIMRUNTIME/init/plugs/vistarc.vim
+source $VIMRUNTIME/init/plugs/vimmdrc.vim
 

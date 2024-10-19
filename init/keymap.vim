@@ -13,6 +13,9 @@
 " 引导按键
 let mapleader='\'
 
+" 用按键 z 来
+" nnoremap z za
+
 " 窗口移动快捷键
 " --------------
 " 
@@ -86,13 +89,11 @@ source $VIMRUNTIME/init/tocs.vim
 " ----------------
 " 
 " 针对一般情况
-noremap <Leader>v :call TocBar()<CR>
-inoremap <Leader>v :call TocBar()<CR>
+nnoremap <Leader>v :call TocBar()<CR>
 
 " 针对在小窗口模式下想要延长窗口宽度打开文件管理器的情况
 " 设置快捷键为 Ctrl + \
-noremap <Leader>V :call TocBarExt()<CR>
-inoremap <Leader>V :call TocBarExt()<CR>
+nnoremap <Leader>V :call TocBarExt()<CR>
 
 " 设置打开终端的热键
 " ==================
@@ -152,12 +153,11 @@ nnoremap <Leader>sa :call AdjustAlpha()<CR>
 " ==================
 "
 " 正常情况下的 NERDTree 按键设置
-nnoremap <C-n> :NERDTreeToggle<CR>
+" nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <Leader>n :NERDTreeToggle<CR>
 
 " 针对在小窗口模式下想要延长窗口宽度打开文件管理器的情况
-noremap <Leader>N :call NERDTreeBar()<CR>
-inoremap <Leader>N :call NERDTreeBar()<CR>
+nnoremap <Leader>N :call NERDTreeBar()<CR>
 
 let s:NERDTree_feature = 0
 

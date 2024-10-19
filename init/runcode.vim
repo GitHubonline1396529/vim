@@ -61,7 +61,7 @@ function! Run()
         \ expand("%:e") == "cxx" ||
         \ expand("%:e") == "cpp" 
         echo " compiling..."
-        :! g++ "%" -o "%<" && "%<.exe"
+        :! g++ "%" -o "%<" && "%<.exe" 
         redraw!
         echohl WarningMsg | echo " Running finish! :-)"
     
@@ -85,7 +85,7 @@ function! Run()
         redraw!
         echohl WarningMsg | echo " Running finish! :-)"
     
-    " 针对 Markdown 文件，调用 MarkdownPreview 插件。
+    " 针对 Markdown 文件
     elseif expand("%:e") == "md" ||
         \ expand("%:e") == "markdown" ||
         \ expand("%:e") == "mdown" ||
@@ -98,7 +98,7 @@ function! Run()
         \ expand("%:e") == "text" ||
         \ expand("%:e") == "rmd"
         " :MarkdownPreview
-	:! pandoc "%" -o "%<.pdf"
+	:! pandoc "%" -o "%<.pdf" --pdf-engine=xelatex --highlight-style tango
         redraw!
         echohl WarningMsg | echo " Running on browser! :-)"
     " 针对 LaTeX 文件，使用 xelatex 编译。

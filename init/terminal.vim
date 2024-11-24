@@ -1,18 +1,19 @@
-" Vim 终端设置
+" Vim Terminal Settings
 "
-" name   : terminal.vim
-" author : 盒子online_1396529
-" date   : 2024/10/11
+" Name: terminal.vim
+" Author: GitHubonline1396529
+" Date: 2024/11/24
+" License: MIT License Copyright (c) 2024 GitHubonline1396529
 "
-" 定义全局变量，设置终端高度
-" --------------------------
+" Define a global variable to set terminal height
+" -----------------------------------------------
 "
 let g:terminal_height = 10
 
-" 指定各个终端选项
-" ----------------
+" Specify options for various terminals
+" -------------------------------------
 "
-" 定义一个字典，存储不同终端的命令
+" Define a dictionary to store commands for different terminals
 let g:terminals = {
 \ 'powershell': 'powershell',
 \ 'pwsh': 'pwsh',
@@ -21,7 +22,7 @@ let g:terminals = {
 \ 'zsh': 'zsh --login -i'
 \ }
 
-" 通用的终端打开函数，传入终端类型
+" General function to open a terminal, passing the terminal type
 function! OpenTerminal(term)
     let l:cmd = get(g:terminals, a:term, '')
     if l:cmd != ''

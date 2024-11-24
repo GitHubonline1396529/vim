@@ -1,187 +1,223 @@
-" Vim 配置主文件
+" Initialization for Vim Configuration 
 "
-" name   : init.vim
-" author : 盒子online_1396529
-" date   : 2024/10/11
+" Name: init.vim
+" Author: GitHubonline1396529
+" Date: 2024/11/24
+" License: MIT License Copyright (c) 2024 GitHubonline1396529
 " 
-" Vim 的配置文件，适用于 gVim 9.1 或以上版本，Windows 操作系统。（理论上
-" 可以进行跨平台移植，但这一尝试在本项目中从未进行过）
+" Vim configuration file for gVim 9.1 or later versions on Windows Operation
+" System. (Theoretically portable across platforms, but such attempts have not
+" been made in this project.)
 "
-" 文件目录说明：请将本文件和相应的 `.vim` 文件夹一同放置在 vim 的安装目录
-" 下，而不是像通常在 Unix/Linux 上那样，放置到用户的主目录下。这一做法是
-" 为了照顾 Windows 系统惨不忍睹的 C 盘空间，因为我们通常会将 Vim 安装到 D
-" 或其他磁盘。
+" Directory Instructions: Place this file and the corresponding `init` folder
+" in Vim's installation directory, rather than the user home directory as is
+" common in Unix/Linux systems. This is to accommodate the limited C drive
+" space on Windows, as Vim is typically installed on the D drive or another
+" partition.
 "
-" 如果需要沿用传统，或者改变配置路径，你需要找到文件中所有的 `$VIMRUNTIME`
-" （`$VIMRUNTIME` 会自动匹配 Vim 的安装目录），并进行相应的修改，具体操作
-" 略。
+" Add the following line to your `.vimrc` file:
+"
+"     source $VIMRUNTIME/init.vim
+"
+" If you prefer to follow traditional conventions or change the configuration 
+" path, you will need to locate all occurrences of `$VIMRUNTIME` in this file
+" (`$VIMRUNTIME` automatically points to Vim's installation directory) and
+" replace them with the dictionary where you want to install this configuration
+" at. You can make some other necessary adjustments accroding to your specific
+" demand. Detailed instructions are omitted, also see `README.md`."
+"
+" ===================
+" Key Custom Settings
+" ===================
+"
+" Import Dependent Configurations
+" ===============================
+"
+source $VIMRUNTIME/init/color.vim " Color Configurations
+source $VIMRUNTIME/init/plugrc.vim " Import Plugin Configurations
+source $VIMRUNTIME/init/keymap.vim " Customize Hotkeys and Related Functions
 
+" WARNING: This section is critical and requires targeted modifications for any
+" configuration migration. Pay extra attention!
+"
+" ==============
+" Basic Settings
+" ==============
+"
+" This section defines some fundamental Vim settings, including but not limited
+" to font, window size, indentation rules, code folding, file encoding, and
+" styles.
+"
+" Specifying the Python Installation Path
+" =======================================
+"
+" Some plugin functionalities depend on Python. You need to specify and adjust
+" this setting.
+"
+" set pythonthreedll=D:\Python\Python39\python39.dll
+
+" ====================
+" File Format Settings
+" ====================
+"
+set modelines=0 " Disable modelines (Security measure)
+filetype on " Enable file type detection
+set encoding=utf-8 " Encoding Setting
+set termencoding=utf-8 " Encoding Setting
+set fileencoding=utf-8 " Encoding Setting
+
+" Display Settings
 " ================
-" 关键的自定义设置
-" ================
-" 
-" WARNING: 这部分设置是必要的，且对于任何移植配置的情形，都需要针对性地进
-" 行修改。需要额外关注！
 "
-" 指定 Python 的安装路径
-" ======================
+" Set the window size in GUI mode to default to 25 rows and 80 columns, which
+" conforms to general programming habits.
 "
-" 部分插件的功能依赖 Python，你需要额外指定修改。
-set pythonthreedll=D:\Python\Python39\python39.dll
-
-" ========
-" 基础设置
-" ========
+" The number written here is 85, this is because the line numbering is enabled 
+" by default, these line numbers always occupy some width, default to be 5
+" characters.
 "
-" 这部分内容规定了 Vim 的一些基本设置，包括但不限于字体、窗口尺寸、缩进规
-" 则、代码折叠、文件编码、样式等。
-
-" ========
-" 文件设置
-" ========
-"
-set modelines=0 " 禁用模式行（安全措施）
-filetype on " 开启文件类型检测
-set encoding=utf-8 " 编码设置
-set termencoding=utf-8 " 编码设置
-set fileencoding=utf-8 " 编码设置
-
-" 显示设置
-" ========
-"
-" 设置 GUI 模式下的窗口尺寸，默认为 25 行 80 列，符合一般的编程习惯。
-" 这里写的数字是 85，这是因为默认开启行编号的情况下行号总要占据一些宽度，
-" 默认占据 5 字符宽度。
 if has('gui_running')
     set lines=25 columns=85
 endif
 
-" set colorcolumn=81 " 80 列尺
+syntax on " Enable syntax
+set number " Enable line number
+set sm! " Highlight matching parentheses
+set hlsearch " Highlight Search Matchings
+set cursorline " Highlight the current cursor line
+set termguicolors " Enable Terminal GUI color
 
-syntax on " 语法高亮
-set number " 显示行号
-set sm! " 高亮显示匹配括号
-set hlsearch " 高亮查找匹配
-set cursorline " 高亮显示当前行
-set termguicolors " 启用终端真色
-
-set showmatch " 显示匹配
-set ruler " 显示标尺，在右下角显示光标位置
-set novisualbell " 不要闪烁
-set showcmd " 显示输入的命令
+set showmatch " Show Match
+set ruler " Show the cursor vertical position in the bottom right corner
+set novisualbell " Disable cursor twinkling
+set showcmd " Show inputed commands
 
 set laststatus=2 " always show statusline
 " set showtabline=2 " always show tabline
 set showtabline=0 " always show tabline
 set vb t_vb=
 
-" MyTabLine 功能我也不知道是干什么用的，反正一直在我的配置里面
-" 好像是实现了一个改进的 Buffer 查看的功能
-source $VIMRUNTIME/init/mytabline.vim
-set tabline=%!MyTabLine()
+set conceallevel=0 " Disable virtual characters
 
-set conceallevel=0 " 不启用虚拟字符
+" Due to the logic defined in 'keymap. vim' that allows users to use hotkeys to
+" switch the display mode of line numbers, there is no need to specific using 
+" relative line number mode in the main configuration file.
+"
+" See also `init/keymap.vim`
+"
+" set relativenumber " Show relative line number
 
-" set relativenumber " 显示相对行号
+" =============
+" Edit Settings
+" =============
+"
+set smartindent " Set smart indent
+set autoindent " Set autoindent
+set smarttab " Set smart tabs
 
-" ========
-" 编辑设置
-" ========
-set smartindent " 智能缩进
-set autoindent " 自动对齐
-set smarttab
-
-" 针对 Python 文件
+" For Python Script Files
 if expand("%:e") == "py"
-    set expandtab " 用space替代tab的输入
+    set expandtab " Use spaces replacing tab
 else
-    set noexpandtab " 确保 Tab 键输入的仍是 Tab 字符，而不是空格
+    " Ensure that the Tab key input is still the Tab character, not spaces
+    set noexpandtab 
 endif
 
-" 下面的方法可以针对 makefile 不启用这些设置，
-" `autocmd BufRead,BufNewFile *` 使命令在每次读取或新建文件时触发
+" The following part of code is designed to disable some of these folloing
+" configurations while editing makefile. However, It seed to be not working
+" well. 
+"
+" Theoretically `autocmd BufRead,BufNewFile *` should trigger the command every
+" time a file is read or created.
+"
 " autocmd BufRead,BufNewFile * if expand("%:t") =~? '^makefile$' |
 "     \ set tabstop=4 |
 "     \ set shiftwidth=4 |
 "     \ set expandtab |
 "     \ endif
 
-set tabstop=8 " 指定 Tab 在编辑器中显示的宽度
-set shiftwidth=4 " 设置自动缩进的宽度
+set tabstop=8 " Specifies the width of a tab in the editor
+set shiftwidth=4 " Sets the width for automatic indentation
 
-set splitright " 设置左右分割窗口时，新窗口出现在右侧
-set splitbelow " 设置水平分割窗口时，新窗口出现在底部
+set splitright " New windows appear on the right side during vertical splits
+set splitbelow " New windows appear below during horizontal splits
 
-set nobackup " 不需要备份
-set nowritebackup " 不需要备份
-set noswapfile " 禁止生成临时文件
-set autoread " 文件自动检测外部更改
-set clipboard=unnamed " 共享剪切板
+set nobackup " Disables backup files
+set nowritebackup " Disables write backup files
+set noswapfile " Disables temporary swap files
+set autoread " Automatically detect external file changes
+set clipboard=unnamed " Share the clipboard with the system
 
-" set nocompatible " 去除vi一致性
-set ambiwidth=double " 解决中文标点显示的问题
-" set nowrap " 不自动折行
-set mouse=a " 使用鼠标
-set mousehide " 输入时隐藏光标
-set sidescroll=10 " 移动到看不见的字符时，自动向右滚动10个字符
+" set nocompatible " Disables strict vi compatibility mode
+set ambiwidth=double " Fixes display issues with Chinese punctuation
+" set nowrap " Disable automatic line wrapping
+set mouse=a " Enables mouse support
+set mousehide " Hides the mouse cursor while typing
 
-" set paste " 保持黏贴格式
+" Automatically scrolls 10 characters to the right when moving to unseen text
+set sidescroll=10 
 
-" 设置代码折叠
-set nofoldenable " 启动 vim 时关闭折叠代码
-" set foldmethod=indent " 设置语法折叠
-" setlocal foldlevel=99 " 设置折叠层数
+" ctag configurations
+set tags=./tags,./TAGS,tags;,TAGS;
+set autochdir
 
-" 设置光标样式
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" set paste " Keeps formatting while pasting
 
-set completeopt=longest,menu   " 自动补全配置让Vim补全菜单行为跟IDE一致
-set backspace=indent,eol,start " 允许用退格键删除字符
+" Code folding settings
+" =====================
+"
+set nofoldenable " Disables automatic code folding when Vim starts
+" set foldmethod=indent " Enables folding based on indentation
+" setlocal foldlevel=99 " Sets the fold level to 99
 
-" 设置字体和字体大小, 只对gui客户端起作用，终端使用需要修改终端字体和大小
+" Cursor style settings
+" Sets cursor to an I-beam in insert mode
+let &t_SI = "\<Esc>]50;CursorShape=1\x7" 
+
+" Sets cursor to a block in replace mode
+let &t_SR = "\<Esc>]50;CursorShape=2\x7" 
+
+" Sets cursor to a block in normal mode
+let &t_EI = "\<Esc>]50;CursorShape=0\x7" 
+
+" GUI Window Settings
+" ===================
+"
+" Configures auto-completion behavior to match an IDE
+set completeopt=longest,menu 
+
+" Allows backspace to delete characters across indentations, line ends, and at
+" the start of lines
+set backspace=indent,eol,start 
+
+" Font and font size settings, applicable only to GUI clients. 
+" Terminal users need to adjust terminal fonts and sizes separately.
+"
 set guifont=Consolas\ for\ Powerline\ FixedD:h12
+"
+" Besides Consolas, the following two Powerline-compatible fonts also work fine
+" on Windows. Other Powerline fonts seem to be functional only on GNU/Linux 
+" platforms for unknown reasons.
+"
 " set guifont=Ububtu\ Mono:h12
 " set guifont=Meslo\ LG\ S\ for\ Powerline:h12
 
-" 设置中西文不同字体显示
-" 不过现在为了设置和插件适配都注释掉了
-" set guifont=Consolas:h12:cANSI
-" set guifont=Consolas\ for\ Powerline\ FixedD:h12 
+" set guifont=Hack\ Nerd\ Font\ Mono:h12
+" Setting different fonts for Western and East Asian characters.
+" Commented out to ensure compatibility with plugins.
 set guifontwide=SimHei:h12
 
-" 禁止显示滚动条
+" If you dislike Powerline font or prefer to use Nerd Font instead
+"
+" set guifontwide=Hack\ Nerd\ Font\ Mono:h12
+
+" Disable scrollbars
 set guioptions-=l
 set guioptions-=L
 set guioptions-=r
 set guioptions-=R
 
-" 禁止显示菜单和工具条
+" Disable menu and toolbar
 set guioptions-=m
 set guioptions-=T
 
-" ========
-" 颜色配置
-" ========
-" 
-source $VIMRUNTIME/init/color.vim
-
-" ========
-" 插件配置
-" ========
-"
-source $VIMRUNTIME/init/plugrc.vim
-
-" 状态栏
-" ------
-" 
-source $VIMRUNTIME/init/statubar.vim
-
-" ==========================
-" 自定义快捷键及其相关的函数
-" ==========================
-
-" 快捷键绑定
-" ----------
-source $VIMRUNTIME/init/keymap.vim

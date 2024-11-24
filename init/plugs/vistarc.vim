@@ -1,13 +1,33 @@
-" Vista 插件配置
+" Configuration for Vim Vista Plugin
 "  
-" name   : vistarc.vim
-" author : 盒子online_1396529
-" date   : 2024/10/11
+" Name: vistarc.vim
+" Author: GitHubonline1396529
+" Date: 2024/11/24
+" License: MIT License Copyright (c) 2024 GitHubonline1396529
 "
-" Vista
-" 预览 Markdown 目录的插件
-" ----------
+" See Also: https://github.com/liuchengxu/vista.vim
+"
+" Show the nearest method/function in the statusline
+" --------------------------------------------------
+" 
+" Note: This is only supported for ctags and coc executive for now.
+" Do the following to show the nearest method/function in statusline:
+"
+" function! NearestMethodOrFunction() abort
+"   return get(b:, 'vista_nearest_method_or_function', '')
+" endfunction
 
+" set statusline+=%{NearestMethodOrFunction()}
+
+" By default vista.vim never run if you don't call it explicitly.
+"
+" If you want to show the nearest function in your statusline automatically,
+" you can add the following line to your vimrc
+" autocmd VimEnter * call vista#RunForNearestMethodOrFunction()
+ 
+" Options
+" -------
+"
 " How each level is indented and what to prepend.
 " This could make the display more compact or more spacious.
 " e.g., more compact: ["▸ ", ""]
@@ -53,3 +73,5 @@ let g:vista#renderer#icons = {
 \   "function": "\uf794",
 \   "variable": "\uf71b",
 \  }
+
+

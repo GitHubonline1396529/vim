@@ -45,6 +45,62 @@ if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
+" 在终端中一些显示会出问题。我这里在终端中使用的是 Hack Nerd Font Mono，但
+" Hack NFM 里面尖角字符是宽字符，这样一旦设置了中文为黑体，用于 Airline 的
+" 特殊字符就无法正确显示。然而由于 Oh-My-Zsh 之类用的都是 Nerd Font, 不能
+" 保证在终端使用 Powerline 字体，所以这里干脆分开处理一下来避免。
+if has('gui_running')
+  " nerd font symbols
+  "
+  " let g:airline_left_sep = ''
+  " let g:airline_left_alt_sep = ''
+  " let g:airline_right_sep = ''
+  " let g:airline_right_alt_sep = ''
+  " let g:airline_symbols.branch = ''
+  " let g:airline_symbols.colnr = ' ℅:'
+  " let g:airline_symbols.readonly = ''
+  " let g:airline_symbols.linenr = ' :'
+  " let g:airline_symbols.maxlinenr = '☰ '
+  " let g:airline_symbols.dirty='⚡'
+
+  " powerline symbols
+  let g:airline_left_sep = '⮀'
+  let g:airline_left_alt_sep = '⮁'
+  let g:airline_right_sep = '⮂'
+  let g:airline_right_alt_sep = '⮃'
+  let g:airline_symbols.branch = '⭠'
+  let g:airline_symbols.readonly = '⭤'
+  let g:airline_symbols.linenr = '⭡'
+else
+  " nerd font symbols
+  let g:airline_left_sep = ''
+  let g:airline_left_alt_sep = ''
+
+  " let g:airline_right_sep = ''
+  " let g:airline_right_alt_sep = ''
+  "
+  " 这两个符号在渲染的时候会偏左导致不美观，干脆拆空
+  let g:airline_right_sep = " "
+  let g:airline_right_alt_sep = " "
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.colnr = ' ℅:'
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.linenr = ' :'
+  let g:airline_symbols.maxlinenr = '☰ '
+  let g:airline_symbols.dirty='⚡'
+
+  " powerline symbols
+  " let g:airline_left_sep = '⮀'
+  " let g:airline_left_alt_sep = '⮁'
+  " let g:airline_right_sep = '⮂'
+  " let g:airline_right_alt_sep = '⮃'
+  " let g:airline_symbols.branch = '⭠'
+  " let g:airline_symbols.readonly = '⭤'
+  " let g:airline_symbols.linenr = '⭡'
+endif
+
+" 最后的备份方案
+"
 " unicode symbols
 "
 " let g:airline_left_sep = '»'
@@ -69,52 +125,3 @@ endif
 " let g:airline_symbols.notexists = '∄'
 " let g:airline_symbols.whitespace = 'Ξ'
 
-" 在终端中一些显示会出问题。不能保证在终端使用 Powerlien 字体，所以这里干
-" 脆分开处理一下来避免。
-if has('gui_running')
-  " powerline symbols
-  " 不知道为什么这里有一些字符我显示不出来，这里用下面的 old symbols
-  "
-  " let g:airline_left_sep = ''
-  " let g:airline_left_alt_sep = ''
-  " let g:airline_right_sep = ''
-  " let g:airline_right_alt_sep = ''
-  " let g:airline_symbols.branch = ''
-  let g:airline_symbols.colnr = ' ℅:'
-  " let g:airline_symbols.readonly = ''
-  " let g:airline_symbols.linenr = ' :'
-  " let g:airline_symbols.maxlinenr = '☰ '
-  let g:airline_symbols.dirty='⚡'
-
-  " powerline symbols
-  let g:airline_left_sep = '⮀'
-  let g:airline_left_alt_sep = '⮁'
-  let g:airline_right_sep = '⮂'
-  let g:airline_right_alt_sep = '⮃'
-  let g:airline_symbols.branch = '⭠'
-  let g:airline_symbols.readonly = '⭤'
-  let g:airline_symbols.linenr = '⭡'
-else
-  " powerline symbols
-  " let g:airline_left_sep = ''
-  " let g:airline_left_alt_sep = ''
-  " let g:airline_right_sep = ''
-  " let g:airline_right_alt_sep = ''
-  " let g:airline_symbols.branch = ''
-  " let g:airline_symbols.colnr = ' ℅:'
-  " let g:airline_symbols.readonly = ''
-  " let g:airline_symbols.linenr = ' :'
-  " let g:airline_symbols.maxlinenr = '☰ '
-  " let g:airline_symbols.dirty='⚡'
-
-  let g:airline_left_sep = ' '
-  let g:airline_left_alt_sep = '>'
-  let g:airline_right_sep = ' '
-  let g:airline_right_alt_sep = '<'
-  let g:airline_symbols.branch = ' Y '
-  let g:airline_symbols.colnr = ' % '
-  let g:airline_symbols.readonly = ' ! '
-  let g:airline_symbols.linenr = ' LN '
-  let g:airline_symbols.maxlinenr = ' = '
-  let g:airline_symbols.dirty=' $ '
-endif

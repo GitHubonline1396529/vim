@@ -1,22 +1,29 @@
-" vim 颜色配置
+" Vim Color Configuration
 "
-" name   : color.vim
-" author : 盒子online_1396529
-" date   : 2024/10/11
+" Name: color.vim
+" Author: GitHubonline1396529
+" Date: 2024/11/24
+" License: MIT License Copyright (c) 2024 GitHubonline1396529
 "
-" 设置了 Vim 编辑器主窗口，以及相应的 Airline 的颜色、主题等，可以根据实
-" 际情况进行相应的调整。在 .vimrc 中使用 `source` 命令导入本文件。
+" Description: Vim Editor Theme and Airline Theme Configuration
+" 
+" The main window of the Vim editor and the corresponding Airline colors, 
+" themes, etc., are set here. These settings can be adjusted as needed. This
+" file is included in .vimrc using the source command.
 "
-" 注意：文件中指定使用的主题必需额外安装。
+" Note: The specified themes in this file must be installed separately instead
+" of using Vim-Plug.
 "
-" Vim 主题设置
-" ============
+" Vim Theme Settings
+" ==================
 "
-" 设置通用的主题
+" General theme setting
 colorscheme one
 
-" 下面的代码可以设置终端和图形界面使用不同的主题，以便于适配 Windows
-" Terminal 美化；以及针对不同编程语言设置不同配色方案的方法。仅供参考。
+" The following code demonstrates how to use different themes for terminal and
+" GUI modes to better adapt to Windows Terminal aesthetics, and how to set
+" different color schemes for specific programming languages. This is provided
+" for reference only.
 "
 " if has('gui_running')
 "     if expand("%:e") == "py"
@@ -30,25 +37,30 @@ colorscheme one
 "     colorscheme one
 " endif
 
-" Airline 主题设置
-" ================
+" Airline Theme Settings
+" ======================
 "
-" 设置通用的主题
-let g:airline_theme="one" 
+" General theme setting
+let g:airline_theme="one"
 
-" 下面的代码可以设置终端和图形界面使用不同的主题，以便于适配 Windows
-" Terminal 美化；以及针对不同编程语言设置不同配色方案的方法。仅供参考。
+" The following code demonstrates how to use different themes for terminal and
+" GUI modes to better adapt to Windows Terminal aesthetics, and how to set
+" different color schemes for specific programming languages. This is provided
+" for reference only.
 "
-" Plugin 'vim-airline'    
+" Plugin 'vim-airline'
 " if has('gui_running')
 " 	if expand("%:e") == "py"
-" 		let g:airline_theme="purewhite" 
+" 		let g:airline_theme="purewhite"
 " 	else
-" 		let g:airline_theme="gruvbox" 
+" 		let g:airline_theme="gruvbox"
 " 	endif
 " else
-" 	let g:airline_theme="gruvbox" 
+" 	let g:airline_theme="gruvbox"
 " endif
+"
+" Tab Bar Appearance
+" ==================
 
 " hi User1 cterm=none ctermfg=gray ctermbg=darkgray
 " hi User2 cterm=none ctermfg=darkgrey ctermbg=gray
@@ -57,22 +69,23 @@ let g:airline_theme="one"
 " hi User5 cterm=none ctermfg=darkgrey ctermbg=gray
 " hi User6 cterm=none ctermfg=darkgrey ctermbg=gray
 " 
-" " 设置 tab 栏
-" " 选中的tab颜色
+" Highlight settings for the selected tab
+"
 " hi SelectTabLine term=Bold cterm=Bold ctermfg=DarkYellow ctermbg=LightGray
 " hi SelectPageNum cterm=None ctermfg=DarkRed ctermbg=LightGray
 " hi SelectWindowsNum cterm=None ctermfg=DarkCyan ctermbg=LightGray
 " 
-" " 未选中状态的tab
+" Highlight settings for unselected tabs
+"
 " hi NormalTabLine cterm=None ctermfg=Gray ctermbg=DarkGray
 " hi NormalPageNum cterm=None ctermfg=Gray ctermbg=DarkGray
 " hi NormalWindowsNum cterm=None ctermfg=Gray ctermbg=DarkGray
 " 
-" " tab栏背景色
+" Background color for the tab bar
 " hi TabLineFill term=reverse ctermfg=5 ctermbg=7 guibg=#6c6c6c
 
-" 亮暗模式切换函数
-" ================
+" Function for Light/Dark Mode Toggle
+" ===================================
 "
 let s:is_light= 0
 
@@ -86,11 +99,25 @@ func! SwitchLightDark()
     endif
 endfunc
 
-" 设置透明化功能的函数
-" ====================
+" Transparency Adjustment
+" =======================
 "
-" 需要 `vimtweak64.dll` 插件
-" 由于再 `keymap.vim` 中定义了新的快捷键，该设置已被弃用。
+" Create a variable for the current window transparency level
+let s:alpha_level=255
+
+" Define a function to adjust window transparency. Decrease transparency from
+" 255 to 210 in steps of 15, providing exactly three levels of adjustment.
+function AdjustAlpha()
+    if s:alpha_level > 210
+	let s:alpha_level -= 15
+    else
+	let s:alpha_level = 255
+    endif
+    call libcallnr("vimtweak64.dll", "SetAlpha", s:alpha_level)
+endfunction
+
+" Note: Older settings for transparency adjustment using predefined commands 
+" have been deprecated and are commented out.
 "
 " command -nargs=0 SetAlpha call SetAlphaFunction()
 " function SetAlphaFunction()

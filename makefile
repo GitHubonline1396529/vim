@@ -1,5 +1,5 @@
 # Makefile
-# 读取 config.mk 文件（如果存在）
+# Read config.mk file (If exist)
 -include config.mk
 
 all:

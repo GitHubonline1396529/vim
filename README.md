@@ -4,7 +4,7 @@
 
 这个项目保存的是我的个性化 Vim 配置，**适用于 gVim 9.1 或以上版本，Windows 操作系统**。我将代码开源出来一方面是方便我自己使用、迁移和保存设置，另一方面也能给其他人提供 Vim 配置的代码方案参照。配置效果示例如图所示。
 
-![Vim 配置示例效果图](./image/demo.png){#fig:demo width=12cm}
+![Vim 配置示例效果图](./image/demo.png)
 
 众所周知，在 Windows 平台上配置 gVim 会遭遇各种各样奇奇怪怪的兼容性问题，包括但不限于：
 
@@ -210,6 +210,15 @@ PREFIX = /d/Vim/vim91
 ```
 
 再执行 `PlugInstall` 即可。有的时候即使是这样也不能安装，则可以考虑反复执行 `PlugInstall` 重复 10 到 20 遍，耐心等待，直至所有插件正确安装。
+
+### Git 中文兼容
+
+在使用 gVim 出现 Git 提交时的中文乱码可能并不是由于 gVim 的问题导致的，而是由于 Git 在默认状态下使用的不是 UTF-8 编码。检验在终端下执行如下命令，设置 Git 默认使用 UFT-8 编码。
+
+```bash
+git config --global i18n.logOutputEncoding utf-8
+git config --global i18n.commitEncoding utf-8
+```
 
 ## 关于
 

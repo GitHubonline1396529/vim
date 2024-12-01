@@ -26,6 +26,10 @@
 " at. You can make some other necessary adjustments accroding to your specific
 " demand. Detailed instructions are omitted, also see `README.md`."
 "
+" See Also:
+"   [1] README.md
+"   [2] https://github.com/GitHubonline1396529/vim
+"
 " ===================
 " Key Custom Settings
 " ===================

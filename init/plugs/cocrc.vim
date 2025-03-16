@@ -1,4 +1,13 @@
-" https://raw.githubusercontent.com/neoclide/coc.nvim/master/doc/coc-example-config.vim
+
+" Coc.Nvim Plugin Configuration 
+" 
+" Name: cocrc.vim
+" Author: GitHubonline1396529
+" Date: 2024/11/24
+" License: MIT License Copyright (c) 2024 GitHubonline1396529
+"
+" See Also: 
+"     https://raw.githubusercontent.com/neoclide/coc.nvim/master/doc/coc-example-config.vim
 
 " May need for Vim (not Neovim) since coc.nvim calculates byte offset by count
 " utf-8 byte sequence

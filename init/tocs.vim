@@ -1,4 +1,3 @@
-
 " Vim Table of Content Functions for Document Browsing
 "
 " Name: tocs.vim

@@ -1,4 +1,4 @@
-" Slime 插件配置
+" Vim Slime Plugin Configuration
 "
 " name   : slimerc.vim
 " author : 盒子online_1396529
@@ -17,5 +17,6 @@ let g:slime_vimterminal_cmd = "ipython"
 let g:slime_dont_ask_default = 1
 
 " See issue #368
-"https://github.com/jpalardy/vim-slime/issues/368
+" https://github.com/jpalardy/vim-slime/issues/368
+"
 " let g:slime_bracketed_paste = 1

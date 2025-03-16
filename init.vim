@@ -40,6 +40,8 @@
 source $VIMRUNTIME/init/color.vim " Color Configurations
 source $VIMRUNTIME/init/plugrc.vim " Import Plugin Configurations
 source $VIMRUNTIME/init/keymap.vim " Customize Hotkeys and Related Functions
+source $VIMRUNTIME/init/system.vim " System compatibility
+source $VIMRUNTIME/init/terminal.vim " Use terminal conveniently
 
 " WARNING: This section is critical and requires targeted modifications for any
 " configuration migration. Pay extra attention!
@@ -163,7 +165,7 @@ set sidescroll=10
 
 " ctag configurations
 set tags=./tags,./TAGS,tags;,TAGS;
-set autochdir
+" set autochdir
 
 " set paste " Keeps formatting while pasting
 

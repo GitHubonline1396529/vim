@@ -8,7 +8,7 @@
 " Define a global variable to set terminal height
 " -----------------------------------------------
 "
-let g:terminal_height = 10
+let g:terminal_height = 12
 
 " Specify options for various terminals
 " -------------------------------------
@@ -18,8 +18,8 @@ let g:terminals = {
 \ 'powershell': 'powershell',
 \ 'pwsh': 'pwsh',
 \ 'cmd': 'cmd',
-\ 'bash': 'bash --login -i',
-\ 'zsh': 'zsh --login -i'
+\ 'bash': 'msys2_shell.cmd -defterm -here -no-start -ucrt64 -use-full-path -c /usr/bin/zsh',
+\ 'zsh': 'msys2_shell.cmd -defterm -here -no-start -ucrt64 -use-full-path -c /usr/bin/zsh'
 \ }
 
 " General function to open a terminal, passing the terminal type
@@ -32,3 +32,5 @@ function! OpenTerminal(term)
     endif
 endfunction
 
+" Define the Ot command to open terminals
+command -nargs=1 Ot call OpenTerminal(<f-args>)

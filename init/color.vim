@@ -17,6 +17,9 @@
 " Vim Theme Settings
 " ==================
 "
+" Import plugin settings
+source $VIMRUNTIME/init/plugrc.vim
+
 " General theme setting
 colorscheme one
 
@@ -87,15 +90,22 @@ let g:airline_theme="one"
 " Function for Light/Dark Mode Toggle
 " ===================================
 "
-let s:is_light= 0
+let s:is_light= 0 " Default to be dark
 
+" For some colorschemes 'AirlineRefresh' cannot work properly. Use 'execute'
+" command to re-specific current airline theme instead.
+"
 func! SwitchLightDark()
     if s:is_light == 0
         let s:is_light = 1
 	set background=light
+	" AirlineRefresh!
+	execute "AirlineTheme" . " " . g:airline_theme
     else
 	let s:is_light = 0
 	set background=dark
+	" AirlineRefresh! 
+	execute "AirlineTheme" . " " . g:airline_theme
     endif
 endfunc
 

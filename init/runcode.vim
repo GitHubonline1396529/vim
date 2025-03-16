@@ -240,20 +240,26 @@ function! Run()
         \ expand("%:e") == "mdtext" ||
         \ expand("%:e") == "text" ||
         \ expand("%:e") == "rmd"
+
+	if executable("pandoc") != 1
+	    echo "Pandoc unexecutable."
+	    echo " Please make sure its installed correctly"
+	endif
+	
 	if CurrentShellName() == "bash.exe"
 	    ! python $VIMRUNTIME/init/python/panargs.py "%"
 	elseif CurrentShellName() == "pwsh.exe"
-            execute "!python " 
+            execute "!start python " 
 	        \. expand("$VIMRUNTIME") 
 	        \. "/init/python/panargs.py " 
 	        \. expand("%")
 	elseif CurrentShellName() == "powershell.exe"
-            execute "!python " 
+            execute "!start python " 
 	        \. expand("$VIMRUNTIME") 
 	        \. "/init/python/panargs.py " 
 	        \. expand("%")
 	else
-            execute "!python " 
+            execute "vertical terminal python " 
 	        \. expand("$VIMRUNTIME") 
 	        \. "/init/python/panargs.py " 
 	        \. expand("%")
@@ -267,7 +273,8 @@ function! Run()
 " Use `latexmk` to build with XeLaTeX rules.
  
     elseif expand("%:e") == "tex"
-        silent ! latexmk -xelatex %
+        silent execute "vertical terminal latexmk -xelatex " 
+	    \. expand("%")
         redraw!
         echohl WarningMsg | echo " XeLaTeX finish! :-)"
     
@@ -298,7 +305,7 @@ function! Run()
 " ~~~~~~~~~~~~~~~~~~~~
 "
 " I can't take it anymore, MapBasic is the worst bullshit fucking programming
-" language I've ever seen. I'll curse myself to be an stupid jerk once ever I
+" language I've ever seen. I'll curse myself to be a stupid jerk once ever I
 " write it again! 
  
     " elseif expand("%:e") == "mb"

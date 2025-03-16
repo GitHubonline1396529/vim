@@ -47,7 +47,7 @@ source $VIMRUNTIME/init/keymaps/nerdtreekm.vim " Window Navigations
 " Basic Keymapping Settings
 " =========================
 "
-" 引导按键
+" Map Leader
 let mapleader='\'
 nnoremap <Leader>x :q!<CR>
 " Light and Dark mode switching

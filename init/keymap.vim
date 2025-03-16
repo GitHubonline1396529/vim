@@ -47,11 +47,9 @@ source $VIMRUNTIME/init/keymaps/nerdtreekm.vim " Window Navigations
 " Basic Keymapping Settings
 " =========================
 "
-" 定义了个人常用的 vim 热键，可在 .vimrc 中使用 `source` 命令导入本文件。
-"
 " 引导按键
 let mapleader='\'
-
+nnoremap <Leader>x :q!<CR>
 " Light and Dark mode switching
 " =============================
 nnoremap <Leader>k :call SwitchLightDark()<CR>
@@ -77,7 +75,7 @@ nnoremap <Leader>v :Vista!!<CR>
 nnoremap <Leader>V :call TocBarExt()<CR>
 
 " Toggle between absolute and relative line numbers
-" ================================================
+" =================================================
 "
 " Allow switching line number modes using the `\nu` command. Toggle between 
 " no line numbers, absolute line numbers, and relative line numbers to suit 
@@ -118,5 +116,8 @@ nnoremap <Leader>sa :call AdjustAlpha()<CR>
 "
 " Using CMD is slightly faster than PowerShell
 " nnoremap <Leader>e :redraw! | silent! !powershell -c start .<CR>
-nnoremap <Leader>e :silent! !start .<CR>
+"
+if has('win32') || has('win64') || has('win16')
+    nnoremap <Leader>e :silent! !start .<CR>
+endif
 

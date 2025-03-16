@@ -36,6 +36,11 @@ Plug 'vim-airline/vim-airline'
 
 " An elegant file explorer.
 Plug 'preservim/nerdtree'
+" Plug 'scrooloose/nerdtree' " File tree manager
+" Plug 'jistr/vim-nerdtree-tabs' " enhance nerdtree's tabs
+" Plug 'ryanoasis/vim-devicons' " add beautiful icons besides files
+" Plug 'Xuyuanp/nerdtree-git-plugin' " display git status within Nerdtree
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " enhance devicons
 
 " Plugin to preview Markdown files in the browser.
 Plug 'iamcco/markdown-preview.nvim', {
@@ -55,8 +60,6 @@ Plug 'lervag/vimtex'
 
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
-" Plug 'rakr/vim-one'
-
 Plug 'preservim/vim-markdown'
 
 " Plug 'Exafunction/codeium.vim', { 'branch': 'main' }
@@ -64,6 +67,21 @@ Plug 'preservim/vim-markdown'
 Plug 'jiangmiao/auto-pairs' "auto-pairs
 
 Plug 'rust-lang/rust.vim'
+
+Plug '1995parham/vim-zimpl'
+
+" The following are several of my favourite colorschemes, and you can choose
+" whether to install them or not.
+
+" Plug 'rakr/vim-one'
+" 'vim-one' doesn't work well it's downloaded with Vim-Plugs. See `README.md`
+" for details.
+"
+Plug 'sainnhe/everforest'
+Plug 'nordtheme/vim'
+Plug 'cocopon/iceberg.vim'
+Plug 'morhetz/gruvbox'
+Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 
 call plug#end()
 

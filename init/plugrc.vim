@@ -42,6 +42,8 @@ Plug 'preservim/nerdtree'
 " Plug 'Xuyuanp/nerdtree-git-plugin' " display git status within Nerdtree
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " enhance devicons
 
+Plug 'github/copilot.vim' " The GitHub copilot
+
 " Plugin to preview Markdown files in the browser.
 Plug 'iamcco/markdown-preview.nvim', {
       \ 'do': { -> mkdp#util#install() },
@@ -82,15 +84,18 @@ Plug 'nordtheme/vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'morhetz/gruvbox'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
+Plug 'cormacrelf/vim-colors-github'
 
 call plug#end()
 
 
 " Specific Configuration of Each Plugin
 " -------------------------------------
-"
+" This part of code imports all my vim configurations for each plugin.
+
 source $VIMRUNTIME/init/plugs/airlinerc.vim
 source $VIMRUNTIME/init/plugs/cocrc.vim
+source $VIMRUNTIME/init/plugs/copilotrc.vim
 source $VIMRUNTIME/init/plugs/ipythonrc.vim
 source $VIMRUNTIME/init/plugs/mkdprc.vim
 source $VIMRUNTIME/init/plugs/netrwrc.vim

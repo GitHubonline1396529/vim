@@ -241,29 +241,29 @@ function! Run()
         \ expand("%:e") == "text" ||
         \ expand("%:e") == "rmd"
 
-	if executable("pandoc") != 1
-	    echo "Pandoc unexecutable."
-	    echo " Please make sure its installed correctly"
-	endif
-	
-	if CurrentShellName() == "bash.exe"
-	    ! python $VIMRUNTIME/init/python/panargs.py "%"
-	elseif CurrentShellName() == "pwsh.exe"
-            execute "!start python " 
-	        \. expand("$VIMRUNTIME") 
-	        \. "/init/python/panargs.py " 
-	        \. expand("%")
-	elseif CurrentShellName() == "powershell.exe"
-            execute "!start python " 
-	        \. expand("$VIMRUNTIME") 
-	        \. "/init/python/panargs.py " 
-	        \. expand("%")
-	else
-            execute "vertical terminal python " 
-	        \. expand("$VIMRUNTIME") 
-	        \. "/init/python/panargs.py " 
-	        \. expand("%")
-	endif
+    if executable("pandoc") != 1
+        echo "Pandoc unexecutable."
+        echo "Please make sure its installed correctly"
+    endif
+    
+    if CurrentShellName() == "bash.exe"
+        ter python $VIMRUNTIME/init/python/panargs.py "%"
+    elseif CurrentShellName() == "pwsh.exe"
+        execute "vertical terminal pwsh -c python -u "
+            \. expand("$VIMRUNTIME")
+            \. "/init/python/panargs.py " 
+            \. expand("%")
+    elseif CurrentShellName() == "powershell.exe"
+        execute "vertical terminal powershell -c python -u " 
+            \. expand("$VIMRUNTIME") 
+            \. "/init/python/panargs.py " 
+            \. expand("%")
+    else
+        execute "vertical terminal python -u " 
+            \. expand("$VIMRUNTIME") 
+            \. "/init/python/panargs.py " 
+            \. expand("%")
+    endif
         redraw!
         echohl WarningMsg | echo " Generate PDF via LaTeX! :-)"
 
@@ -274,7 +274,7 @@ function! Run()
  
     elseif expand("%:e") == "tex"
         silent execute "vertical terminal latexmk -xelatex " 
-	    \. expand("%")
+        \. expand("%")
         redraw!
         echohl WarningMsg | echo " XeLaTeX finish! :-)"
     

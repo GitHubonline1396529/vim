@@ -14,14 +14,20 @@
 " Note: The specified themes in this file must be installed separately instead
 " of using Vim-Plug.
 "
-" Vim Theme Settings
-" ==================
+" General Color Settings
+" ======================
+" 
+" For vim colorscheme and the Airline.
+" 
+" See `plugrc` for more avaiable colorschemes.
+colorscheme one
+let g:airline_theme="one"
+
+" Other Vim Theme Settings
+" ========================
 "
 " Import plugin settings
 source $VIMRUNTIME/init/plugrc.vim
-
-" General theme setting
-colorscheme one
 
 " The following code demonstrates how to use different themes for terminal and
 " GUI modes to better adapt to Windows Terminal aesthetics, and how to set
@@ -43,9 +49,6 @@ colorscheme one
 " Airline Theme Settings
 " ======================
 "
-" General theme setting
-let g:airline_theme="one"
-
 " The following code demonstrates how to use different themes for terminal and
 " GUI modes to better adapt to Windows Terminal aesthetics, and how to set
 " different color schemes for specific programming languages. This is provided

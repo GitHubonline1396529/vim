@@ -47,6 +47,7 @@
 | 状态栏       | airline.vim       |
 | 代码补全方案 | Coc.nvim          |
 | 内部终端     | vim-terminal      |
+| AI 补全      | Github Copilot    |
 
 #### 键位设置
 

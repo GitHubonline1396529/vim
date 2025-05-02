@@ -15,9 +15,9 @@
 " The following function is designed to get name of current shell, so that I
 " can pass it to the `shell` variable. However after some trails I realize
 " that Vimscript doesn't allow such kind of
-" function! CurrentShellName()
-"     return fnamemodify(&shell, ':t')
-" endfunction
+function! CurrentShellName()
+    return fnamemodify(&shell, ':t')
+endfunction
 " 
 " set shell=CurrentShellName()
 

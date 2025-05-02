@@ -37,15 +37,16 @@
 " Import Dependent Configurations
 " ===============================
 "
+" WARNING: This section is critical and requires targeted modifications for any
+" configuration migration. Pay extra attention!
+"
 source $VIMRUNTIME/init/color.vim " Color Configurations
 source $VIMRUNTIME/init/plugrc.vim " Import Plugin Configurations
 source $VIMRUNTIME/init/keymap.vim " Customize Hotkeys and Related Functions
 source $VIMRUNTIME/init/system.vim " System compatibility
 source $VIMRUNTIME/init/terminal.vim " Use terminal conveniently
+source $VIMRUNTIME/init/commands.vim "Customized commands
 
-" WARNING: This section is critical and requires targeted modifications for any
-" configuration migration. Pay extra attention!
-"
 " ==============
 " Basic Settings
 " ==============
@@ -120,14 +121,15 @@ set conceallevel=0 " Disable virtual characters
 set smartindent " Set smart indent
 set autoindent " Set autoindent
 set smarttab " Set smart tabs
+set expandtab " Use spaces replacing tab
 
 " For Python Script Files
-if expand("%:e") == "py"
-    set expandtab " Use spaces replacing tab
-else
-    " Ensure that the Tab key input is still the Tab character, not spaces
-    set noexpandtab 
-endif
+" if expand("%:e") == "py"
+"     set expandtab " Use spaces replacing tab
+" else
+"     " Ensure that the Tab key input is still the Tab character, not spaces
+"     set noexpandtab 
+" endif
 
 " The following part of code is designed to disable some of these folloing
 " configurations while editing makefile. However, It seed to be not working

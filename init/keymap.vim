@@ -81,7 +81,9 @@ nnoremap <Leader>V :call TocBarExt()<CR>
 " no line numbers, absolute line numbers, and relative line numbers to suit 
 " different needs.
 "
-let s:nu_flag = 0
+set nu
+set relativenumber
+let s:nu_flag = 1
 
 function SetNuState()
     if s:nu_flag == 0
@@ -99,7 +101,7 @@ function SetNuState()
     endif
 endfunction
 
-nnoremap <Leader>nu :call SetNuState()<CR>
+nnoremap <Leader>sn :call SetNuState()<CR>
 
 " Enable Window Transparency Adjust
 " =================================

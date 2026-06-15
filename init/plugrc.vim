@@ -32,7 +32,7 @@
 call plug#begin('$VIMRUNTIME/plugged')
 
 " The Airline plugin.
-Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline', { 'branch': 'master' }
 
 " An elegant file explorer.
 Plug 'preservim/nerdtree'
@@ -58,8 +58,9 @@ Plug 'jpalardy/vim-slime', { 'for': 'python' }
 
 Plug 'hanschen/vim-ipython-cell', { 'for': 'python' }
 
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', { 'branch': 'master' }
 
+" Main branch of coc.vim is 'release'.
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 
 Plug 'preservim/vim-markdown'
@@ -84,7 +85,7 @@ Plug 'nordtheme/vim'
 Plug 'cocopon/iceberg.vim'
 Plug 'morhetz/gruvbox'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
-Plug 'cormacrelf/vim-colors-github'
+Plug 'projekt0n/github-nvim-theme'
 
 call plug#end()
 
